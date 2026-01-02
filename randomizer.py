@@ -5,6 +5,11 @@ import string
 
 L_RANDOM = 16 # Length of randomized IDs
 
+PLACEHOLDER_ID        = "ID_PLACEHOLDER"
+PLACEHOLDER_STYLE     = "<!-- STYLE_PLACEHOLDER -->"
+PLACEHOLDER_CALLBACKS = "<!-- CALLBACKS_PLACEHOLDER -->"
+PLACEHOLDER_BUTTONS   = "<!-- BUTTONS_PLACEHOLDER -->"
+
 def gen_id(length):
     characters = string.ascii_letters + string.digits
     result_str = ''.join(random.choice(characters) for i in range(length))
@@ -21,8 +26,8 @@ ID_BTN_BLACK = gen_id(L_RANDOM)
 """ CREATE HTML FILE FROM TEMPLATES """
 URL_INDEX = ID_INDEX + ".html"
 
-path_skeleton_html  = "./skeleton/index.phtml"
-path_skeleton_style = "./skeleton/style.pcss"
+path_skeleton_html  = "./skeleton/index.html"
+path_skeleton_style = "./skeleton/style.css"
 path_index = "./templates/" + URL_INDEX
 path_templates = "./templates"
 
@@ -34,11 +39,11 @@ JSCALLBACKS = {
     }
 
 HTMLBUTTONS = {
-        "PREV"  : f"<a href=# id=%ID% class='button bg1 tall' style='width: 40%'>PREV</a>",
-        "NEXT"  : f"<a href=# id=%ID% class='button bg2 tall' style='width: 40%'>NEXT</a>",
+        "PREV"  : f"<a href=# id={PLACEHOLDER_ID} class='button bg1 tall' style='width: 40%'>PREV</a>",
+        "NEXT"  : f"<a href=# id={PLACEHOLDER_ID} class='button bg2 tall' style='width: 40%'>NEXT</a>",
         "BR0"   : f"<br>",
-        "BLACK" : f"<a href=# id=%ID% class='button bg5 short' style='width: 40%'>BLACK SCREEN</a>",
-        "WHITE" : f"<a href=# id=%ID% class='button bg5rev short' style='width: 40%'>WHITE SCREEN</a>"
+        "BLACK" : f"<a href=# id={PLACEHOLDER_ID} class='button bg5 short' style='width: 40%'>BLACK SCREEN</a>",
+        "WHITE" : f"<a href=# id={PLACEHOLDER_ID} class='button bg5rev short' style='width: 40%'>WHITE SCREEN</a>"
         }
 
 def gen_style():
@@ -62,7 +67,7 @@ def gen_htmlbuttons():
     text = ""
     for k in HTMLBUTTONS:
         if k in JSCALLBACKS:
-            text += HTMLBUTTONS[k].replace("%ID%", JSCALLBACKS[k]) + "\n"
+            text += HTMLBUTTONS[k].replace(PLACEHOLDER_ID, JSCALLBACKS[k]) + "\n"
         else:
             text += HTMLBUTTONS[k]
     return text
@@ -80,11 +85,11 @@ def generate_index_html():
     with open(path_index, "w") as fout:
         with open(path_skeleton_html, "r") as fhtml:
             for l in fhtml.readlines():
-                if "%STYLE%" in l:
+                if PLACEHOLDER_STYLE in l:
                     fout.write(gen_style())
-                elif "%CALLBACKS%" in l:
+                elif PLACEHOLDER_CALLBACKS in l:
                     fout.write(gen_jscallbacks())
-                elif "%BUTTONS%" in l:
+                elif PLACEHOLDER_BUTTONS in l:
                     fout.write(gen_htmlbuttons())
                 else:
                     fout.write(l)
