@@ -86,7 +86,7 @@ path_index = randomizer.generate_index_html()
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(('8.8.8.8', 1))  # connect() for UDP doesn't send packets
 local_ip = s.getsockname()[0]
-app_addr = f"{local_ip}:{randomizer.PORT}/{randomizer.ID_INDEX}"
+app_addr = f"http://{local_ip}:{randomizer.PORT}/{randomizer.ID_INDEX}"
 print(f"Accessible via {app_addr}")
 
 ''' Generate & print qrcode '''
