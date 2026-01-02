@@ -1,56 +1,83 @@
+h1 {
+  font-family: sans-serif;
+  font-size: clamp(24px, 6vw, 32px); /* Increased size for better visibility */
+  font-weight: 700;
+  margin-bottom: 24px;
+  align-self: center;
+  color: #283845;
+}
+
 .button {
   font-family: sans-serif;
-  font-size: 30px;
-  padding: 15px 32px;
+  padding: clamp(12px, 3vw, 16px) clamp(24px, 6vw, 32px);
   text-align: center;
-  vertical-align: middle;
   text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
+  display: inline-flex; /* Changed to inline-flex for better alignment */
+  justify-content: center; /* Center content */
+  align-items: center; /* Center content */
+  margin: 8px 4px;
   cursor: pointer;
-  border-radius: 10px;
-}
-
-.bg1 {
-  background-color: #F29559;
-  color: #202C39;
+  border-radius: 12px;
   border: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.bg2 {
-  background-color: #F2D492;
-  color: #202C39;
-  border: none;
+.button:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+  transform: translateY(-4px); /* More pronounced lift effect */
 }
 
-.bg3 {
-  background-color: #B8B08D;
-  color: #202C39;
-  border: none;
+.button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.bg4 {
-  background-color: #283845;
-  color: #202C39;
-  border: none;
+.bg1 { background-color: #F29559; color: #202C39; }
+.bg2 { background-color: #F2D492; color: #202C39; }
+.bg3 { background-color: #B8B08D; color: #202C39; }
+.bg4 { background-color: #283845; color: #202C39; }
+.bgk { background-color: #202C39; color: #FFFFFF; }
+.bgw { background-color: #FFFFFF; color: #202C39; border: 2px solid #202C39; }
+
+.bigtext {
+  font-size: clamp(40px, 5vw, 60px); /* Increased base size for better visibility */
+  font-weight: 600;
+  margin: 12px 0;
 }
 
-.bg5 {
-  background-color: #202C39;
-  color: #FFFFFF;
-  border: none;
+.normaltext {
+  font-size: clamp(20px, 4vw, 24px);
+  font-weight: 500;
+  margin: 10px 0;
 }
 
-.bg5rev {
-  background-color: #FFFFFF;
-  color : #202C39;
-  border : solid #202C39;
+.smalltext {
+  font-size: clamp(12px, 3vw, 16px);
+  font-weight: 400;
+  margin: 8px 0;
 }
 
 .tall {
-  height: 200px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  min-height: 48px;
 }
 
 .short {
-  height: 50px;
+  height: 44px;
+  width: 100%;
+  min-height: 44px;
+}
+
+@media (max-width: 768px) {
+  .button {
+    padding: 16px 28px;
+    font-size: clamp(18px, 6vw, 22px); /* Larger text on smartphones */
+  }
+  
+  .tall, .short {
+    min-height: 52px;
+  }
 }

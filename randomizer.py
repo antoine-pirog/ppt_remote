@@ -39,11 +39,11 @@ JSCALLBACKS = {
     }
 
 HTMLBUTTONS = {
-        "PREV"  : f"<a href=# id={PLACEHOLDER_ID} class='button bg1 tall' style='width: 40%'>PREV</a>",
-        "NEXT"  : f"<a href=# id={PLACEHOLDER_ID} class='button bg2 tall' style='width: 40%'>NEXT</a>",
+        "PREV"  : f"<a href=# id={PLACEHOLDER_ID} class='button bg1 bigtext tall' style='width: 40%'>&#x25C0;</a>",
+        "NEXT"  : f"<a href=# id={PLACEHOLDER_ID} class='button bg2 bigtext tall' style='width: 40%'>&#x25B6;</a>",
         "BR0"   : f"<br>",
-        "BLACK" : f"<a href=# id={PLACEHOLDER_ID} class='button bg5 short' style='width: 40%'>BLACK SCREEN</a>",
-        "WHITE" : f"<a href=# id={PLACEHOLDER_ID} class='button bg5rev short' style='width: 40%'>WHITE SCREEN</a>"
+        "BLACK" : f"<a href=# id={PLACEHOLDER_ID} class='button bgk normaltext short' style='width: 40%'>Black screen</a>",
+        "WHITE" : f"<a href=# id={PLACEHOLDER_ID} class='button bgw normaltext short' style='width: 40%'>White screen</a>"
         }
 
 def gen_style():
