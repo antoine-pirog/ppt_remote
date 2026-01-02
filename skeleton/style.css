@@ -1,10 +1,20 @@
 h1 {
   font-family: sans-serif;
-  font-size: clamp(24px, 6vw, 32px); /* Increased size for better visibility */
+  font-size: clamp(24px, 6vw, 32px);
   font-weight: 700;
   margin-bottom: 24px;
   align-self: center;
   color: #283845;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
 }
 
 .button {
@@ -12,9 +22,9 @@ h1 {
   padding: clamp(12px, 3vw, 16px) clamp(24px, 6vw, 32px);
   text-align: center;
   text-decoration: none;
-  display: inline-flex; /* Changed to inline-flex for better alignment */
-  justify-content: center; /* Center content */
-  align-items: center; /* Center content */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   margin: 8px 4px;
   cursor: pointer;
   border-radius: 12px;
@@ -25,8 +35,8 @@ h1 {
 }
 
 .button:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
-  transform: translateY(-4px); /* More pronounced lift effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
 }
 
 .button:active {
@@ -34,15 +44,17 @@ h1 {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.bg1 { background-color: #F29559; color: #202C39; }
-.bg2 { background-color: #F2D492; color: #202C39; }
-.bg3 { background-color: #B8B08D; color: #202C39; }
-.bg4 { background-color: #283845; color: #202C39; }
-.bgk { background-color: #202C39; color: #FFFFFF; }
-.bgw { background-color: #FFFFFF; color: #202C39; border: 2px solid #202C39; }
+.bgdo  { background-color: #F29559; color: #202C39; }                             /* Dark Orange */
+.bglo  { background-color: #F2D492; color: #202C39; }                             /* Light Orange */
+.bglg { background-color: #a3d3a3; color: #202C39; }                              /* Light Green */
+.bgdg { background-color: #5db35d; color: #202C39; }                              /* Dark Green */
+.bgr  { background-color: #D72631; color: #FFFFFF; }                              /* Red */
+.bgb  { background-color: #164063; color: #FFFFFF; }                              /* Blue */
+.bgk  { background-color: #202C39; color: #FFFFFF; }                              /* Black */
+.bgw  { background-color: #FFFFFF; color: #202C39; border: 2px solid #202C39; } /* White */
 
 .bigtext {
-  font-size: clamp(40px, 5vw, 60px); /* Increased base size for better visibility */
+  font-size: clamp(40px, 5vw, 60px);
   font-weight: 600;
   margin: 12px 0;
 }
@@ -62,10 +74,16 @@ h1 {
 .tall {
   width: 100%;
   aspect-ratio: 1 / 1;
-  min-height: 48px;
+  min-height: 96px;
 }
 
 .short {
+  height: 66px;
+  width: 100%;
+  min-height: 66px;
+}
+
+.shorter {
   height: 44px;
   width: 100%;
   min-height: 44px;
@@ -74,7 +92,7 @@ h1 {
 @media (max-width: 768px) {
   .button {
     padding: 16px 28px;
-    font-size: clamp(18px, 6vw, 22px); /* Larger text on smartphones */
+    font-size: clamp(18px, 6vw, 22px);
   }
   
   .tall, .short {

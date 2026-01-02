@@ -17,11 +17,17 @@ def gen_id(length):
 
 """ Randomize elements """
 PORT = random.randint(49152,65535)
-ID_INDEX     = gen_id(L_RANDOM)
-ID_BTN_PREV  = gen_id(L_RANDOM)
-ID_BTN_NEXT  = gen_id(L_RANDOM)
-ID_BTN_WHITE = gen_id(L_RANDOM)
-ID_BTN_BLACK = gen_id(L_RANDOM)
+ID_INDEX             = gen_id(L_RANDOM)
+ID_BTN_PREV          = gen_id(L_RANDOM)
+ID_BTN_NEXT          = gen_id(L_RANDOM)
+ID_BTN_WHITE         = gen_id(L_RANDOM)
+ID_BTN_BLACK         = gen_id(L_RANDOM)
+ID_BTN_START_FIRST   = gen_id(L_RANDOM)
+ID_BTN_START_CURRENT = gen_id(L_RANDOM)
+ID_BTN_STOP_SHOW     = gen_id(L_RANDOM)
+ID_BTN_PEN           = gen_id(L_RANDOM)
+ID_BTN_ERASER        = gen_id(L_RANDOM)
+ID_BTN_ARROW         = gen_id(L_RANDOM)
 
 """ CREATE HTML FILE FROM TEMPLATES """
 URL_INDEX = ID_INDEX + ".html"
@@ -32,19 +38,38 @@ path_index = "./templates/" + URL_INDEX
 path_templates = "./templates"
 
 JSCALLBACKS = {
-        "PREV"  : ID_BTN_PREV,
-        "NEXT"  : ID_BTN_NEXT,
-        "WHITE" : ID_BTN_WHITE,
-        "BLACK" : ID_BTN_BLACK
+        "PREV"          : ID_BTN_PREV,
+        "NEXT"          : ID_BTN_NEXT,
+        "WHITE"         : ID_BTN_WHITE,
+        "BLACK"         : ID_BTN_BLACK,
+        "START_FIRST"   : ID_BTN_START_FIRST,
+        "START_CURRENT" : ID_BTN_START_CURRENT,
+        "STOP_SHOW"     : ID_BTN_STOP_SHOW,
+        "PEN"           : ID_BTN_PEN,
+        "ERASER"        : ID_BTN_ERASER,
+        "ARROW"         : ID_BTN_ARROW
     }
 
-HTMLBUTTONS = {
-        "PREV"  : f"<a href=# id={PLACEHOLDER_ID} class='button bg1 bigtext tall' style='width: 40%'>&#x25C0;</a>",
-        "NEXT"  : f"<a href=# id={PLACEHOLDER_ID} class='button bg2 bigtext tall' style='width: 40%'>&#x25B6;</a>",
-        "BR0"   : f"<br>",
-        "BLACK" : f"<a href=# id={PLACEHOLDER_ID} class='button bgk normaltext short' style='width: 40%'>Black screen</a>",
-        "WHITE" : f"<a href=# id={PLACEHOLDER_ID} class='button bgw normaltext short' style='width: 40%'>White screen</a>"
-        }
+HTML_BUTTON_ROWS = [
+            {
+                "PREV"          : f"  <a href=# id={PLACEHOLDER_ID} class='button bglo bigtext tall' style='width: 40%'>&#x25C0;</a>", # Left arrow
+                "NEXT"          : f"  <a href=# id={PLACEHOLDER_ID} class='button bgdo bigtext tall' style='width: 40%'>&#x25B6;</a>", # Right arrow
+            },
+            {
+                "BLACK"         : f"  <a href=# id={PLACEHOLDER_ID} class='button bgk normaltext short' style='width: 40%'>Black screen</a>",
+                "WHITE"         : f"  <a href=# id={PLACEHOLDER_ID} class='button bgw normaltext short' style='width: 40%'>White screen</a>"
+            },
+            {
+                "PEN"           : f"  <a href=# id={PLACEHOLDER_ID} class='button bgb normaltext short' style='width: 25%'>Pen</a>",
+                "ERASER"        : f"  <a href=# id={PLACEHOLDER_ID} class='button bgw normaltext short' style='width: 25%'>Eraser</a>",
+                "ARROW"         : f"  <a href=# id={PLACEHOLDER_ID} class='button bgk normaltext short' style='width: 25%'>Arrow</a>"
+            },
+            {
+                "START_FIRST"   : f"  <a href=# id={PLACEHOLDER_ID} class='button bglg normaltext shorter' style='width: 15%'>Start from first slide</a>",
+                "START_CURRENT" : f"  <a href=# id={PLACEHOLDER_ID} class='button bgdg normaltext shorter' style='width: 15%'>Start from current slide</a>",
+                "STOP_SHOW"     : f"  <a href=# id={PLACEHOLDER_ID} class='button bgr  normaltext shorter'  style='width: 40%'>Stop slideshow</a>"
+            }
+        ]
 
 def gen_style():
     text = ""
@@ -65,11 +90,14 @@ def gen_jscallbacks():
 
 def gen_htmlbuttons():
     text = ""
-    for k in HTMLBUTTONS:
-        if k in JSCALLBACKS:
-            text += HTMLBUTTONS[k].replace(PLACEHOLDER_ID, JSCALLBACKS[k]) + "\n"
-        else:
-            text += HTMLBUTTONS[k]
+    for row in HTML_BUTTON_ROWS:
+        text += "<div class='row'>\n"
+        for k in row:
+            if k in JSCALLBACKS:
+                text += row[k].replace(PLACEHOLDER_ID, JSCALLBACKS[k]) + "\n"
+            else:
+                text += row[k] + "\n"
+        text += "</div>\n"
     return text
 
 def cleanup(which=None):

@@ -10,23 +10,23 @@ import randomizer
 """
 PPT KB SHORTCUTS :
 
-F5          : Begin the slideshow from first slide
-shift+F5    : Begin the slideshow from the current slide
-spacebar    : Advance to next slide/animation
+F5          : Begin the slideshow from first slide         <<< Supported by app
+shift+F5    : Begin the slideshow from the current slide   <<< Supported by app
+spacebar    : Advance to next slide/animation                  Duplicate of N
 N           : Advance to next slide/animation              <<< Supported by app
-right arrow : Advance to next slide/animation
-backspace   : Go to the previous slide/animation
+right arrow : Advance to next slide/animation                  Duplicate of N
+backspace   : Go to the previous slide/animation               Duplicate of P
 P           : Go to the previous slide/animation           <<< Supported by app
-left arrow  : Go to the previous slide/animation
-Ctrl+P      : change the mouse pointer to a pen
+left arrow  : Go to the previous slide/animation               Duplicate of P
+Ctrl+P      : change the mouse pointer to a pen            <<< Supported by app
 W           : Pause and display a white screen             <<< Supported by app
-,           : Pause and display a white screen
+,           : Pause and display a white screen                 Duplicate of W
 B           : Pause and display a black screen             <<< Supported by app
-.           : Pause and display a black screen
-E           : Change the pointer to an eraser
-Ctrl+E      : Change the pointer to an eraser
-Ctrl+A      : Change the pointer to the default arrow
-Esc         : Exit
+.           : Pause and display a black screen                 Duplicate of B
+E           : Change the pointer to an eraser                  Duplicate of Ctrl+E
+Ctrl+E      : Change the pointer to an eraser              <<< Supported by app
+Ctrl+A      : Change the pointer to the default arrow      <<< Supported by app
+Esc         : Exit                                         <<< Supported by app
 """
 
 host = "0.0.0.0"
@@ -35,10 +35,16 @@ host = "0.0.0.0"
 keyboard = pynput.keyboard.Controller()
 k = pynput.keyboard.Key
 
-BTN_NEXT_SLIDE   = k.right
-BTN_PREV_SLIDE   = k.left
-BTN_BLACK_SCREEN = 'b'
-BTN_WHITE_SCREEN = 'w'
+BTN_NEXT_SLIDE    = k.right
+BTN_PREV_SLIDE    = k.left
+BTN_BLACK_SCREEN  = 'b'
+BTN_WHITE_SCREEN  = 'w'
+BTN_START_FIRST   = k.f5
+BTN_START_CURRENT = k.shift, k.f5
+BTN_STOP_SHOW     = k.esc
+BTN_PEN           = k.ctrl, 'P'
+BTN_ERASER        = k.ctrl, 'E'
+BTN_ARROW         = k.ctrl, 'A'
 
 def press(btn):
     keyboard.press(btn)
@@ -75,8 +81,36 @@ def btn_callback_black():
 def btn_callback_white():
     press(BTN_WHITE_SCREEN)
     return "nothing"
+    
+@app.route(f'/btn_callback/{randomizer.JSCALLBACKS["START_FIRST"]}')
+def btn_callback_start_first():
+    press(BTN_START_FIRST)
+    return "nothing"
 
+@app.route(f'/btn_callback/{randomizer.JSCALLBACKS["START_CURRENT"]}')
+def btn_callback_start_current():
+    press(BTN_START_CURRENT)
+    return "nothing"
 
+@app.route(f'/btn_callback/{randomizer.JSCALLBACKS["STOP_SHOW"]}')
+def btn_callback_stop_show():
+    press(BTN_STOP_SHOW)
+    return "nothing"
+
+@app.route(f'/btn_callback/{randomizer.JSCALLBACKS["PEN"]}')
+def btn_callback_pen():
+    press(BTN_PEN)
+    return "nothing"
+
+@app.route(f'/btn_callback/{randomizer.JSCALLBACKS["ERASER"]}')
+def btn_callback_eraser():
+    press(BTN_ERASER)
+    return "nothing"
+
+@app.route(f'/btn_callback/{randomizer.JSCALLBACKS["ARROW"]}')
+def btn_callback_arrow():
+    press(BTN_ARROW)
+    return "nothing"
 
 """ Generate UI """
 randomizer.cleanup()
