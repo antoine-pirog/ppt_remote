@@ -1,6 +1,8 @@
 # ppt_remote
 
-Webapp to turn your phone into a simple remote control for PowerPoint (or PDF) presentations. 
+Webapp to turn your phone into a simple -and somewhat secure against interference - remote control for PowerPoint presentations.
+
+It was originally written to use my smartphone as a remote control via the local network for the lessons I was taching with a PowerPoint presentation. To prevent snooping from my students and any voluntary interference with my lesson, I randomized everything I could on the app : port, page name, and callbacks.
 
 ## First steps
 
